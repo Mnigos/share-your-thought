@@ -74,6 +74,7 @@ module.exports = {
         'sonarjs/no-duplicate-string': 'off',
         '@typescript-eslint/unbound-method': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
       },
     },
     {
@@ -151,6 +152,7 @@ module.exports = {
       {
         allowList: {
           ref: true,
+          Ref: true,
           props: true,
           Props: true,
           param: true,
