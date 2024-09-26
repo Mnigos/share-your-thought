@@ -1,6 +1,6 @@
-const { resolve } = require("node:path");
+const { resolve } = require('node:path')
 
-const project = resolve(process.cwd(), "tsconfig.json");
+const project = resolve(process.cwd(), 'tsconfig.json')
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
@@ -43,16 +43,16 @@ module.exports = {
     'import/ignore': ['node_modules', '\\.(coffee|scss|css|less|hbs|html)$'],
   },
   ignorePatterns: [
-    ".*.js",
-    "node_modules/",
-    "dist/",
+    '.*.js',
+    'node_modules/',
+    'dist/',
     'tailwind.config.ts',
     'postcss.config.cjs',
-    ".eslintrc.cjs",
+    '.eslintrc.cjs',
   ],
   plugins: [
     '@typescript-eslint',
-    "only-warn",
+    'only-warn',
     'eslint-plugin-import-helpers',
     'react-refresh',
     'sonarjs',
@@ -60,11 +60,11 @@ module.exports = {
     'prettier',
   ],
   extends: [
-    "eslint:recommended",
+    'eslint:recommended',
     'plugin:@next/next/recommended',
     'plugin:@typescript-eslint/strict-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
-    require.resolve("@vercel/style-guide/eslint/next"),
+    require.resolve('@vercel/style-guide/eslint/next'),
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
@@ -74,7 +74,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:sonarjs/recommended-legacy',
     'plugin:unicorn/recommended',
-    "turbo",
+    'turbo',
     'prettier',
     'plugin:storybook/recommended',
     'plugin:@eslint-community/eslint-comments/recommended',
@@ -128,13 +128,10 @@ module.exports = {
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-argument': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-base-to-string': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
       { checksVoidReturn: false },
-    ],
-    '@typescript-eslint/no-base-to-string': [
-      'error',
-      { ignoredTypeNames: ['Url'] },
     ],
     '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/consistent-type-imports': 'warn',
@@ -159,6 +156,7 @@ module.exports = {
     'sonarjs/function-return-type': 'off',
     'sonarjs/use-type-alias': 'off',
     'sonarjs/no-misused-promises': 'off',
+    'sonarjs/no-base-to-string': 'off',
     'unicorn/prefer-node-protocol': 'off',
     'unicorn/no-useless-undefined': 'off',
     'unicorn/no-unreadable-array-destructuring': 'off',
@@ -211,4 +209,4 @@ module.exports = {
       },
     ],
   },
-};
+}
