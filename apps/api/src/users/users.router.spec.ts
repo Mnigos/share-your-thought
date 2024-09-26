@@ -8,9 +8,16 @@ import { PrismaService } from '../config/prisma'
 import { UsersRouter } from './users.router'
 
 describe('UsersRouter', () => {
+  const name = 'test'
+  const userMock = mock<User>({
+    name,
+  })
+
   let moduleReference: TestingModule
   let usersRouter: UsersRouter
   let prisma: PrismaService
+
+  let userFindUniqueSpy: MockInstance
 
   beforeAll(async () => {
     moduleReference = await Test.createTestingModule({
@@ -21,7 +28,7 @@ describe('UsersRouter', () => {
           useValue: {
             user: {
               create: vi.fn(),
-              findFirst: vi.fn(),
+              findUnique: vi.fn(),
             },
           },
         },
@@ -30,6 +37,8 @@ describe('UsersRouter', () => {
 
     usersRouter = moduleReference.get(UsersRouter)
     prisma = moduleReference.get(PrismaService)
+
+    userFindUniqueSpy = vi.spyOn(prisma.user, 'findUnique')
   })
 
   afterAll(async () => {
@@ -41,25 +50,18 @@ describe('UsersRouter', () => {
   })
 
   describe('login', () => {
-    const name = 'test'
-    const userMock = mock<User>({
-      name,
-    })
-
-    let userFindFirstSpy: MockInstance
     let userCreateSpy: MockInstance
 
     beforeEach(() => {
-      userFindFirstSpy = vi.spyOn(prisma.user, 'findFirst')
       userCreateSpy = vi.spyOn(prisma.user, 'create')
     })
 
     test('should return found user', async () => {
-      userFindFirstSpy.mockResolvedValue(userMock)
+      userFindUniqueSpy.mockResolvedValue(userMock)
 
       expect(await usersRouter.login(name)).toEqual(userMock)
 
-      expect(userFindFirstSpy).toHaveBeenCalledWith({
+      expect(userFindUniqueSpy).toHaveBeenCalledWith({
         where: {
           name,
         },
@@ -68,18 +70,44 @@ describe('UsersRouter', () => {
     })
 
     test('should create account if not found', async () => {
-      userFindFirstSpy.mockResolvedValue(null)
+      userFindUniqueSpy.mockResolvedValue(null)
       userCreateSpy.mockResolvedValue(userMock)
 
       expect(await usersRouter.login(name)).toEqual(userMock)
 
-      expect(userFindFirstSpy).toHaveBeenCalledWith({
+      expect(userFindUniqueSpy).toHaveBeenCalledWith({
         where: {
           name,
         },
       })
       expect(userCreateSpy).toHaveBeenCalledWith({
         data: {
+          name,
+        },
+      })
+    })
+  })
+
+  describe('byName', () => {
+    test('should return found user', async () => {
+      userFindUniqueSpy.mockResolvedValue(userMock)
+
+      expect(await usersRouter.byName(name)).toEqual(userMock)
+
+      expect(userFindUniqueSpy).toHaveBeenCalledWith({
+        where: {
+          name,
+        },
+      })
+    })
+
+    test('should throw not found error', async () => {
+      userFindUniqueSpy.mockResolvedValue(null)
+
+      await expect(usersRouter.byName(name)).rejects.toThrowError('NOT_FOUND')
+
+      expect(userFindUniqueSpy).toHaveBeenCalledWith({
+        where: {
           name,
         },
       })

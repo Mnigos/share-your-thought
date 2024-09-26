@@ -1,3 +1,4 @@
+import { TRPCError } from '@trpc/server'
 import { Input, Query, Router } from 'nestjs-trpc'
 
 import { PrismaService } from '../config/prisma'
@@ -10,7 +11,7 @@ export class UsersRouter {
 
   @Query({ input: createUserSchema, output: userSchema })
   async login(@Input('name') name: string) {
-    const foundUser = await this.prisma.user.findFirst({
+    const foundUser = await this.prisma.user.findUnique({
       where: {
         name,
       },
@@ -23,5 +24,18 @@ export class UsersRouter {
         name,
       },
     })
+  }
+
+  @Query({ input: createUserSchema })
+  async byName(@Input('name') name: string) {
+    const foundUser = await this.prisma.user.findUnique({
+      where: {
+        name,
+      },
+    })
+
+    if (!foundUser) throw new TRPCError({ code: 'NOT_FOUND' })
+
+    return foundUser
   }
 }
