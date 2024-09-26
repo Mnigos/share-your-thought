@@ -1,0 +1,49 @@
+{
+  "name": "@repo/ui",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "ui": "pnpm dlx shadcn@latest",
+    "lint": "eslint \"**/*.{ts,tsx}\"",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@total-typescript/ts-reset": "^0.6.1",
+    "@types/react": "^18.3.9",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.1.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "8.57.0",
+    "happy-dom": "^15.7.4",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "vitest": "^2.1.1",
+    "vitest-mock-extended": "^2.0.2"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.446.0",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "exports": {
+    "./postcss.config": "./postcss.config.mjs",
+    "./tailwind.config": "./tailwind.config.ts",
+    "./tailwind.css": "./src/tailwind.css",
+    "./components/*": "./src/components/*.tsx",
+    "./utils": "./src/utils/index.ts",
+    "./utils/*": "./src/utils/*.ts"
+  }
+}
