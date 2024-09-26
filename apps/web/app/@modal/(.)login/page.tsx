@@ -12,7 +12,7 @@ import { Label } from '@repo/ui/components/label'
 import { redirect, usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { login } from '../../actions/login'
+import { login } from '../../actions/auth'
 
 export default function LoginPage() {
   const pathname = usePathname()

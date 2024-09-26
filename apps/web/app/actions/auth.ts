@@ -1,6 +1,7 @@
 'use server'
 
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 import { trpc } from '../trpc'
 
@@ -12,4 +13,10 @@ export async function login(name: string) {
   cookies().set('username', user.name)
 
   return user
+}
+
+export async function logout() {
+  cookies().delete('username')
+
+  redirect('/')
 }
