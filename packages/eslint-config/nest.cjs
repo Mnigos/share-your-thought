@@ -1,6 +1,6 @@
-const { resolve } = require("node:path");
+const { resolve } = require('node:path')
 
-const project = resolve(process.cwd(), "tsconfig.json");
+const project = resolve(process.cwd(), 'tsconfig.json')
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
@@ -36,23 +36,23 @@ module.exports = {
     'import/ignore': ['node_modules', '\\.(coffee|scss|css|less|hbs|html)$'],
   },
   ignorePatterns: [
-    ".*.js",
-    "node_modules/",
-    "dist/",
-    ".eslintrc.cjs",
-    "server.ts"
+    '.*.js',
+    'node_modules/',
+    'dist/',
+    '.eslintrc.cjs',
+    'server.ts',
   ],
   plugins: [
     '@typescript-eslint',
     '@trilon/eslint-plugin',
     'nestjs',
-    "only-warn",
+    'only-warn',
     'eslint-plugin-import-helpers',
     'sonarjs',
     'prettier',
   ],
   extends: [
-    "eslint:recommended",
+    'eslint:recommended',
     'plugin:@typescript-eslint/strict-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:@trilon/recommended',
@@ -62,7 +62,7 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:sonarjs/recommended-legacy',
     'plugin:unicorn/recommended',
-    "turbo",
+    'turbo',
     'prettier',
     'plugin:@eslint-community/eslint-comments/recommended',
   ],
@@ -87,16 +87,23 @@ module.exports = {
     'no-undef': 'off',
     'prefer-const': 'warn',
     'prettier/prettier': 'warn',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      { ignoreRestSiblings: true },
-    ],
-    '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-argument': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unnecessary-type-parameters': 'off',
+    '@typescript-eslint/no-namespace': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-extraneous-class': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/consistent-type-imports': 'warn',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { ignoreRestSiblings: true },
+    ],
     '@typescript-eslint/no-misused-promises': [
       'error',
       { checksVoidReturn: false },
@@ -105,9 +112,6 @@ module.exports = {
       'error',
       { ignoredTypeNames: ['Url'] },
     ],
-    '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/consistent-type-imports': 'warn',
-    '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       {
@@ -155,9 +159,11 @@ module.exports = {
           Params: true,
           args: true,
           env: true,
+          Env: true,
         },
       },
     ],
+    'unicorn/prefer-top-level-await': 'off',
     'import/no-cycle': 'warn',
     'import/consistent-type-specifier-style': ['off'],
     'import/order': [
@@ -169,4 +175,4 @@ module.exports = {
     '@trilon/detect-circular-reference': 'off',
     'nestjs/use-validation-pipe': 'off',
   },
-};
+}
