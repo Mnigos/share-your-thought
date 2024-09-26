@@ -165,6 +165,9 @@ importers:
       babel-plugin-react-compiler:
         specifier: 0.0.0-experimental-6067d4e-20240925
         version: 0.0.0-experimental-6067d4e-20240925
+      lucide-react:
+        specifier: ^0.446.0
+        version: 0.446.0(react@19.0.0-rc-fb9a90fa48-20240614)
       next:
         specifier: 15.0.0-rc.0
         version: 15.0.0-rc.0(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-6067d4e-20240925)(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)
@@ -12299,6 +12302,10 @@ snapshots:
   lucide-react@0.446.0(react@18.3.1):
     dependencies:
       react: 18.3.1
+
+  lucide-react@0.446.0(react@19.0.0-rc-fb9a90fa48-20240614):
+    dependencies:
+      react: 19.0.0-rc-fb9a90fa48-20240614
 
   lz-string@1.5.0: {}
 

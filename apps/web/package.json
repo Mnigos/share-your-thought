@@ -21,6 +21,7 @@
     "@trpc/server": "^11.0.0-rc.532",
     "autoprefixer": "^10.4.20",
     "babel-plugin-react-compiler": "0.0.0-experimental-6067d4e-20240925",
+    "lucide-react": "^0.446.0",
     "next": "15.0.0-rc.0",
     "postcss": "^8.4.47",
     "react": "19.0.0-rc-fb9a90fa48-20240614",
