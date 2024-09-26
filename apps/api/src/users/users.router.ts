@@ -18,14 +18,10 @@ export class UsersRouter {
 
     if (foundUser) return foundUser
 
-    const createdUser = await this.prisma.user.create({
+    return this.prisma.user.create({
       data: {
         name,
       },
     })
-
-    console.log(createdUser)
-
-    return createdUser
   }
 }
