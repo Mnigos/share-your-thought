@@ -7,6 +7,7 @@
     "lint": "turbo lint",
     "test": "turbo test",
     "test:coverage": "turbo test:coverage",
+    "docker:postgres": "turbo docker:postgres",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky",
     "commit": "cz"
@@ -15,6 +16,7 @@
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@commitlint/types": "^19.5.0",
+    "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",

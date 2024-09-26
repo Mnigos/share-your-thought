@@ -23,6 +23,12 @@
       "dependsOn": ["^test:coverage"],
       "outputs": ["coverage/**"]
     },
+    "docker:postgres": {
+      "dependsOn": ["^docker:postgres"]
+    },
+    "api#dev": {
+      "dependsOn": ["api#docker:postgres"]
+    },
     "dev": {
       "cache": false,
       "persistent": true

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    command: pnpm run dev
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/usr/app/src
+      - /usr/app/src/node_modules
+    depends_on:
+      - postgres
+
+  postgres:
+    image: bitnami/postgresql:latest
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    environment:
+      POSTGRESQL_USERNAME: ${DATABASE_USERNAME}
+      POSTGRESQL_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRESQL_DATABASE: ${DATABASE_NAME}
+    volumes:
+      - 'postgresql_data:/bitnami/postgresql'
+
+volumes:
+  postgresql_data:
+    driver: local
