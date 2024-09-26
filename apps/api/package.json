@@ -17,6 +17,8 @@
     "test:coverage": "vitest run --coverage",
     "docker:postgres": "docker compose up --build -V postgres -d",
     "prisma:generate": "prisma generate",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
