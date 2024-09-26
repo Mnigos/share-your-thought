@@ -1,16 +1,22 @@
 import { Button } from '@repo/ui/components/button'
-
-import { trpc } from './trpc'
+import { cookies } from 'next/headers'
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
 
 export const runtime = 'edge'
 
-export default async function Home() {
-  const hello = await trpc.hello.getHello.query()
+export default function Home() {
+  const username = cookies().get('username')
+
+  if (username) redirect('/thoughts')
 
   return (
-    <main>
-      <h1 className="text-red-500">{hello}</h1>
-      <Button>Click me</Button>
-    </main>
+    <section>
+      <Button asChild>
+        <Link href="/login" passHref>
+          Get started
+        </Link>
+      </Button>
+    </section>
   )
 }
