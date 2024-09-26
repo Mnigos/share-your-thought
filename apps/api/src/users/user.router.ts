@@ -26,7 +26,7 @@ export class UsersRouter {
     })
   }
 
-  @Query({ input: createUserSchema })
+  @Query({ input: createUserSchema, output: userSchema })
   async byName(@Input('name') name: string) {
     const foundUser = await this.prisma.user.findUnique({
       where: {
