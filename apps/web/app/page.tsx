@@ -11,12 +11,12 @@ export default function Home() {
   if (username) redirect('/thoughts')
 
   return (
-    <section>
+    <main>
       <Button asChild>
         <Link href="/login" passHref>
           Get started
         </Link>
       </Button>
-    </section>
+    </main>
   )
 }

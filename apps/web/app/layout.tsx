@@ -15,7 +15,7 @@ function RootLayout({ children, modal }: RootLayout.Props) {
   return (
     <html lang="en">
       <body className="dark">
-        <main className="min-h-screen">{children}</main>
+        <div className="min-h-screen">{children}</div>
         {modal}
       </body>
     </html>
