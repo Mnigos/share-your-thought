@@ -3,6 +3,7 @@ import { TRPCModule } from 'nestjs-trpc'
 import { ConfigModule } from '@nestjs/config'
 
 import { EnvModule, envSchema } from '../config/env'
+import { PrismaModule } from '../config/prisma'
 
 import { AppRouter } from './app.router'
 
@@ -16,6 +17,7 @@ import { AppRouter } from './app.router'
       isGlobal: true,
     }),
     EnvModule,
+    PrismaModule,
   ],
   providers: [AppRouter],
 })
