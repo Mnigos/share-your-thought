@@ -10,6 +10,7 @@
     "test:coverage": "turbo test:coverage",
     "docker:postgres": "turbo docker:postgres",
     "prisma:generate": "pnpm --filter api prisma:generate",
+    "prisma:format": "pnpm --filter api prisma:format",
     "prisma:migrate:dev": "pnpm --filter api prisma:migrate:dev",
     "prisma:migrate:deploy": "pnpm --filter api prisma:migrate:deploy",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
