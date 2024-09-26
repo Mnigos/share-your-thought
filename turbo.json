@@ -26,6 +26,9 @@
     "docker:postgres": {
       "dependsOn": ["^docker:postgres"]
     },
+    "prisma:generate": {
+      "dependsOn": ["^prisma:generate"]
+    },
     "api#dev": {
       "dependsOn": ["api#docker:postgres"]
     },

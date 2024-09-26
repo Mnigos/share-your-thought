@@ -8,6 +8,7 @@
     "test": "turbo test",
     "test:coverage": "turbo test:coverage",
     "docker:postgres": "turbo docker:postgres",
+    "prisma:generate": "turbo prisma:generate",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky",
     "commit": "cz"
