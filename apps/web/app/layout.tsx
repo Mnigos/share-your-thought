@@ -1,13 +1,25 @@
 import '@repo/ui/tailwind.css'
+import type { ReactNode } from 'react'
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+import type { LayoutProps } from './types/props'
+
+namespace RootLayout {
+  export type Props = Readonly<
+    LayoutProps & {
+      modal: ReactNode
+    }
+  >
+}
+
+function RootLayout({ children, modal }: RootLayout.Props) {
   return (
     <html lang="en">
-      <body className="dark">{children}</body>
+      <body className="dark">
+        <main className="min-h-screen">{children}</main>
+        {modal}
+      </body>
     </html>
   )
 }
+
+export default RootLayout
