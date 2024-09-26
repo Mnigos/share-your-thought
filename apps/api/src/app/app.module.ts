@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config'
 import { EnvModule, envSchema } from '../config/env'
 import { PrismaModule } from '../config/prisma'
 import { UsersModule } from '../users'
+import { ThoughtsModule } from '../thoughts'
 
 import { AppRouter } from './app.router'
 
@@ -20,6 +21,7 @@ import { AppRouter } from './app.router'
     EnvModule,
     PrismaModule,
     UsersModule,
+    ThoughtsModule,
   ],
   providers: [AppRouter],
 })
