@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 
-import { UsersRouter } from './users.router'
+import { UsersRouter } from './user.router'
 
 @Module({
   providers: [UsersRouter],

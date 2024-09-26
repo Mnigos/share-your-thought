@@ -5,9 +5,9 @@ import type { MockInstance } from 'vitest'
 
 import { PrismaService } from '../config/prisma'
 
-import { UsersRouter } from './users.router'
+import { UsersRouter } from './user.router'
 
-describe('UsersRouter', () => {
+describe('UserRouter', () => {
   const name = 'test'
   const userMock = mock<User>({
     name,

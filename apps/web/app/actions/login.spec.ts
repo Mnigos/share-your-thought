@@ -8,7 +8,7 @@ import { login } from './login'
 vi.mock('next/headers')
 vi.mock('../trpc', () => ({
   trpc: {
-    users: {
+    user: {
       login: {
         query: vi.fn(),
       },
@@ -24,7 +24,7 @@ describe('login', () => {
     })
 
     const loginQuerySpy = vi
-      .spyOn(trpc.users.login, 'query')
+      .spyOn(trpc.user.login, 'query')
       .mockResolvedValue(userMock)
     const cookiesSetSpy = vi.fn()
     vi.mocked(cookies).mockReturnValue({

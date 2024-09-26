@@ -5,7 +5,7 @@ import { PrismaService } from '../config/prisma'
 
 import { createUserSchema, userSchema } from './user.schema'
 
-@Router({ alias: 'users' })
+@Router({ alias: 'user' })
 export class UsersRouter {
   constructor(private readonly prisma: PrismaService) {}
 

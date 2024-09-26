@@ -12,7 +12,7 @@ export default async function ThoughtsLayout({ children }: LayoutProps) {
 
   if (!username) redirect('/thoughts')
 
-  const user = await trpc.users.byName.query({ name: username })
+  const user = await trpc.user.byName.query({ name: username })
 
   return (
     <div>
