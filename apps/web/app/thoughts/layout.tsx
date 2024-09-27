@@ -19,7 +19,7 @@ export const runtime = 'edge'
 export default async function ThoughtsLayout({ children }: LayoutProps) {
   const username = cookies().get('username')?.value
 
-  if (!username) redirect('/thoughts')
+  if (!username) redirect('/')
 
   const getUserByName = unstable_cache(
     (name: string) => trpc.user.byName.query(name),
