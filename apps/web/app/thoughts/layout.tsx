@@ -1,32 +1,20 @@
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import { User, LogOut } from 'lucide-react'
+import { Button } from '@repo/ui/components/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@repo/ui/components/dropdown-menu'
-import { Button } from '@repo/ui/components/button'
-import { unstable_cache } from 'next/cache'
+import { LogOut, User } from 'lucide-react'
 
-import { trpc } from '../trpc'
-import type { LayoutProps } from '../types/props'
 import { logout } from '../actions/auth'
+import { getCurrentUser } from '../actions/users'
+import type { LayoutProps } from '../types/props'
 
 export const runtime = 'edge'
 
 export default async function ThoughtsLayout({ children }: LayoutProps) {
-  const username = cookies().get('username')?.value
-
-  if (!username) redirect('/')
-
-  const getUserByName = unstable_cache(
-    (name: string) => trpc.user.byName.query(name),
-    [username]
-  )
-
-  const user = await getUserByName(username)
+  const user = await getCurrentUser()
 
   return (
     <div>
