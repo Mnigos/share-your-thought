@@ -2,6 +2,7 @@ import { mock } from 'vitest-mock-extended'
 import { cookies } from 'next/headers'
 
 import { trpc } from '../trpc'
+import type { User } from '../types/users'
 
 import { login, logout } from './auth'
 
@@ -19,11 +20,11 @@ vi.mock('../trpc', () => ({
 describe('auth', () => {
   test('should login', async () => {
     const name = 'test'
-    const userMock = mock<Awaited<ReturnType<typeof login>>>({
+    const userMock = mock<User>({
       name,
     })
 
-    const loginQuerySpy = vi
+    const userLoginQuerySpy = vi
       .spyOn(trpc.user.login, 'query')
       .mockResolvedValue(userMock)
     const cookiesSetSpy = vi.fn()
@@ -32,7 +33,7 @@ describe('auth', () => {
     } as unknown as ReturnType<typeof cookies>)
 
     expect(await login(name)).toEqual(userMock)
-    expect(loginQuerySpy).toHaveBeenCalledWith({
+    expect(userLoginQuerySpy).toHaveBeenCalledWith({
       name,
     })
     expect(cookiesSetSpy).toHaveBeenCalledWith('username', userMock.name)
