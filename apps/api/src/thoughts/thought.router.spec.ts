@@ -74,7 +74,11 @@ describe('ThoughtRouter', () => {
       expect(thoughtCreateSpy).toHaveBeenCalledWith({
         data: {
           content,
-          authorId,
+          author: {
+            connect: {
+              id: authorId,
+            },
+          },
         },
       })
       expect(thoughtFindUniqueSpy).toHaveBeenCalledWith({
