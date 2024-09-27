@@ -16,3 +16,8 @@ export const createThoughtSchema = thoughtSchema
   .extend({
     authorId: z.string(),
   })
+
+export const editThoughtSchema = thoughtSchema.pick({
+  content: true,
+  id: true,
+})
