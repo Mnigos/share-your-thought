@@ -22,7 +22,7 @@ export default async function ThoughtsLayout({ children }: LayoutProps) {
   if (!username) redirect('/thoughts')
 
   const getUserByName = unstable_cache(
-    (name: string) => trpc.user.byName.query({ name }),
+    (name: string) => trpc.user.byName.query(name),
     [username]
   )
 

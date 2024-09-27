@@ -1,5 +1,6 @@
 import { TRPCError } from '@trpc/server'
 import { Input, Query, Router } from 'nestjs-trpc'
+import { z } from 'zod'
 
 import { PrismaService } from '../config/prisma'
 
@@ -26,8 +27,8 @@ export class UsersRouter {
     })
   }
 
-  @Query({ input: createUserSchema, output: userSchema })
-  async byName(@Input('name') name: string) {
+  @Query({ input: z.string(), output: userSchema })
+  async byName(@Input() name: string) {
     const foundUser = await this.prisma.user.findUnique({
       where: {
         name,
