@@ -1,7 +1,9 @@
 import { getThoughts } from '../actions/thoughts'
+import { getCurrentUser } from '../actions/users'
 import { CreateThoughtForm, ThoughtCard } from '../components/thoughts'
 
 export default async function ThoughtsPage() {
+  const currentUser = await getCurrentUser()
   const thoughts = await getThoughts()
 
   return (
@@ -17,8 +19,13 @@ export default async function ThoughtsPage() {
           </header>
 
           <div className="flex flex-col gap-2">
-            {thoughts.reverse().map(({ id, content, author }) => (
-              <ThoughtCard key={id} content={content} author={author} />
+            {thoughts.toReversed().map(({ id, content, author }) => (
+              <ThoughtCard
+                key={id}
+                content={content}
+                author={author}
+                currentUserId={currentUser.id}
+              />
             ))}
           </div>
         </section>
