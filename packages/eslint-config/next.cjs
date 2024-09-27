@@ -185,6 +185,7 @@ module.exports = {
           Params: true,
           args: true,
           env: true,
+          fn: true,
         },
       },
     ],
