@@ -24,6 +24,7 @@ describe('ThoughtRouter', () => {
             thought: {
               create: vi.fn(),
               findUnique: vi.fn(),
+              update: vi.fn(),
             },
           },
         },
@@ -84,6 +85,45 @@ describe('ThoughtRouter', () => {
       expect(thoughtFindUniqueSpy).toHaveBeenCalledWith({
         where: {
           id,
+        },
+        select: {
+          id: true,
+          content: true,
+          author: true,
+          createdAt: true,
+        },
+      })
+    })
+  })
+
+  describe('edit', () => {
+    test('should edit', async () => {
+      const id = 'id'
+      const content = 'content'
+      const authorId = 'authorId'
+
+      const thoughtWithAuthorMock = mock<z.infer<typeof thoughtSchema>>({
+        id,
+        content: content,
+        author: {
+          id: authorId,
+        },
+      })
+
+      const thoughtUpdateSpy = vi
+        .spyOn(prisma.thought, 'update')
+        .mockResolvedValue(thoughtWithAuthorMock as any)
+
+      expect(await thoughtRouter.edit(content, id)).toEqual(
+        thoughtWithAuthorMock
+      )
+
+      expect(thoughtUpdateSpy).toHaveBeenCalledWith({
+        where: {
+          id,
+        },
+        data: {
+          content,
         },
         select: {
           id: true,

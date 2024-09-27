@@ -3,7 +3,11 @@ import { Input, Query, Router } from 'nestjs-trpc'
 
 import { PrismaService } from '../config/prisma'
 
-import { createThoughtSchema, thoughtSchema } from './thought.schema'
+import {
+  createThoughtSchema,
+  editThoughtSchema,
+  thoughtSchema,
+} from './thought.schema'
 
 @Router({ alias: 'thought' })
 export class ThoughtRouter {
@@ -28,6 +32,30 @@ export class ThoughtRouter {
     return this.prisma.thought.findUnique({
       where: {
         id,
+      },
+      select: {
+        id: true,
+        content: true,
+        author: true,
+        createdAt: true,
+      },
+    })
+  }
+
+  @Query({
+    input: editThoughtSchema,
+    output: thoughtSchema,
+  })
+  edit(
+    @Input('content') content: Thought['content'],
+    @Input('id') id: Thought['id']
+  ) {
+    return this.prisma.thought.update({
+      where: {
+        id,
+      },
+      data: {
+        content,
       },
       select: {
         id: true,
