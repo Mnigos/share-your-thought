@@ -4,7 +4,7 @@ import { PrismaService } from '../config/prisma'
 
 import { thoughtSchema } from './thought.schema'
 
-@Router({ alias: 'thought' })
+@Router({ alias: 'thoughts' })
 export class ThoughtsRouter {
   constructor(private readonly prisma: PrismaService) {}
 
