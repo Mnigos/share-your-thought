@@ -22,6 +22,7 @@ export default async function ThoughtsPage() {
             {thoughts.toReversed().map(({ id, content, author }) => (
               <ThoughtCard
                 key={id}
+                id={id}
                 content={content}
                 author={author}
                 currentUserId={currentUser.id}

@@ -1,18 +1,24 @@
-import { User, Pencil } from 'lucide-react'
-import { Card, CardContent, CardHeader } from '@repo/ui/components/card'
 import { Button } from '@repo/ui/components/button'
+import { Card, CardContent, CardHeader } from '@repo/ui/components/card'
+import { Pencil, User } from 'lucide-react'
+import Link from 'next/link'
 
 import type { Thought } from '../../types/thoughts'
 
 namespace ThoughtCard {
   export type Props = Readonly<
-    Pick<Thought, 'content' | 'author'> & {
+    Pick<Thought, 'content' | 'author' | 'id'> & {
       currentUserId: string
     }
   >
 }
 
-function ThoughtCard({ content, author, currentUserId }: ThoughtCard.Props) {
+function ThoughtCard({
+  id,
+  content,
+  author,
+  currentUserId,
+}: ThoughtCard.Props) {
   return (
     <Card className="flex flex-col gap-2 px-4">
       <CardHeader className="flex flex-row items-center justify-between">
@@ -28,8 +34,10 @@ function ThoughtCard({ content, author, currentUserId }: ThoughtCard.Props) {
         </div>
 
         {currentUserId === author.id && (
-          <Button variant="outline" className="gap-2" size="icon">
-            <Pencil className="h-4 w-4" />
+          <Button variant="outline" className="gap-2" size="icon" asChild>
+            <Link href={`/thought/${id}/edit`} passHref>
+              <Pencil className="h-4 w-4" />
+            </Link>
           </Button>
         )}
       </CardHeader>
