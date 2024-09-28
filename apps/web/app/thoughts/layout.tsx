@@ -6,6 +6,7 @@ import {
   DropdownMenuTrigger,
 } from '@repo/ui/components/dropdown-menu'
 import { LogOut, User } from 'lucide-react'
+import type { ReactNode } from 'react'
 
 import { logout } from '../actions/auth'
 import { getCurrentUser } from '../actions/users'
@@ -13,7 +14,15 @@ import type { LayoutProps } from '../types/props'
 
 export const runtime = 'edge'
 
-export default async function ThoughtsLayout({ children }: LayoutProps) {
+namespace ThoughtsLayout {
+  export type Props = Readonly<
+    LayoutProps & {
+      modal: ReactNode
+    }
+  >
+}
+
+async function ThoughtsLayout({ children, modal }: ThoughtsLayout.Props) {
   const user = await getCurrentUser()
 
   return (
@@ -41,6 +50,10 @@ export default async function ThoughtsLayout({ children }: LayoutProps) {
       </nav>
 
       <main>{children}</main>
+
+      {modal}
     </div>
   )
 }
+
+export default ThoughtsLayout
