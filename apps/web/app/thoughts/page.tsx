@@ -1,6 +1,6 @@
 import { getThoughts } from '../actions/thoughts'
 import { getCurrentUser } from '../actions/users'
-import { CreateThoughtForm, ThoughtCard } from '../components/thoughts'
+import { ThoughtForm, ThoughtCard } from '../components/thoughts'
 
 export default async function ThoughtsPage() {
   const currentUser = await getCurrentUser()
@@ -11,7 +11,7 @@ export default async function ThoughtsPage() {
       <h1>Thoughts</h1>
 
       <div className="mx-auto max-w-[1100px]">
-        <CreateThoughtForm />
+        <ThoughtForm />
 
         <section>
           <header>

@@ -8,9 +8,11 @@ import {
 } from '@repo/ui/components/dialog'
 import { usePathname, useRouter } from 'next/navigation'
 
-import { EditThoughtForm } from './edit-thought-form'
+import { ThoughtForm } from './thought-form'
 
-export function EditThoughtDialog({ thought }: EditThoughtForm.Props) {
+export function EditThoughtDialog({
+  thought,
+}: Readonly<Required<ThoughtForm.Props>>) {
   const pathname = usePathname()
   const router = useRouter()
 
@@ -27,7 +29,7 @@ export function EditThoughtDialog({ thought }: EditThoughtForm.Props) {
           <DialogTitle>Edit thought</DialogTitle>
         </DialogHeader>
 
-        <EditThoughtForm thought={thought} />
+        <ThoughtForm thought={thought} />
       </DialogContent>
     </Dialog>
   )
