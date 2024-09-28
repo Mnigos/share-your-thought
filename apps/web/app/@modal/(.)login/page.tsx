@@ -1,40 +1,59 @@
 'use client'
 
-import { Button } from '@repo/ui/components/button'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from '@repo/ui/components/dialog'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@repo/ui/components/form'
 import { Input } from '@repo/ui/components/input'
-import { Label } from '@repo/ui/components/label'
-import { redirect, usePathname, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 import { login } from '../../actions/auth'
+import { SubmitButton } from '../../components/submit-button'
+
+const loginSchema = z.object({
+  name: z
+    .string({
+      required_error: 'Name is required.',
+    })
+    .min(1, 'Name is required.'),
+})
+
+type LoginSchema = z.infer<typeof loginSchema>
 
 export default function LoginPage() {
   const pathname = usePathname()
-  const [isOpen, setIsOpen] = useState(pathname === '/login')
   const router = useRouter()
+  const form = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
+  })
+  const [pending, startTransition] = useTransition()
 
-  async function handleSubmit(formData: FormData) {
-    const name = formData.get('name')
+  function onSubmit({ name }: LoginSchema) {
+    startTransition(async () => {
+      await login(name)
+    })
 
-    if (!name) return
-
-    await login(name.toString())
-
-    setIsOpen(false)
-
-    redirect('/thoughts')
+    router.push('/thoughts')
   }
 
   return (
     <Dialog
       defaultOpen={true}
-      open={isOpen}
+      open={pathname === '/login'}
       onOpenChange={isOpen => {
         if (!isOpen) router.push('/')
       }}
@@ -46,14 +65,32 @@ export default function LoginPage() {
           </DialogTitle>
         </DialogHeader>
 
-        <form className="flex w-full items-end gap-2" action={handleSubmit}>
-          <div className="flex w-full flex-col gap-2">
-            <Label htmlFor="name">Name</Label>
-            <Input placeholder="your nickname" id="name" name="name" />
-          </div>
+        <Form {...form}>
+          <form
+            className="flex w-full gap-2"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel>Name</FormLabel>
 
-          <Button type="submit">Submit</Button>
-        </form>
+                  <div className="flex w-full gap-2">
+                    <FormControl>
+                      <Input {...field} placeholder="your nickname" />
+                    </FormControl>
+
+                    <SubmitButton pending={pending} />
+                  </div>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   )
