@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing'
 import { mock } from 'vitest-mock-extended'
 import type { Thought } from '@prisma/client'
 import type { z } from 'zod'
+import type { MockInstance } from 'vitest'
 
 import { PrismaService } from '../config/prisma'
 
@@ -10,9 +11,27 @@ import { ThoughtRouter } from './thought.router'
 import type { thoughtSchema } from './thought.schema'
 
 describe('ThoughtRouter', () => {
+  const id = 'id'
+  const content = 'content'
+  const authorId = 'authorId'
+  const thoughtMock = mock<Thought>({
+    id,
+    content,
+    authorId,
+  })
+  const thoughtWithAuthorMock = mock<z.infer<typeof thoughtSchema>>({
+    id,
+    content: content,
+    author: {
+      id: authorId,
+    },
+  })
+
   let moduleRef: TestingModule
   let thoughtRouter: ThoughtRouter
   let prisma: PrismaService
+
+  let thoughtFindUniqueSpy: MockInstance
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
@@ -33,6 +52,8 @@ describe('ThoughtRouter', () => {
 
     thoughtRouter = moduleRef.get(ThoughtRouter)
     prisma = moduleRef.get(PrismaService)
+
+    thoughtFindUniqueSpy = vi.spyOn(prisma.thought, 'findUnique')
   })
 
   afterAll(async () => {
@@ -45,28 +66,10 @@ describe('ThoughtRouter', () => {
 
   describe('create', () => {
     test('should create', async () => {
-      const id = 'id'
-      const content = 'content'
-      const authorId = 'authorId'
-      const thoughtMock = mock<Thought>({
-        id,
-        content,
-        authorId,
-      })
-      const thoughtWithAuthorMock = mock<z.infer<typeof thoughtSchema>>({
-        id,
-        content: content,
-        author: {
-          id: authorId,
-        },
-      })
-
       const thoughtCreateSpy = vi
         .spyOn(prisma.thought, 'create')
         .mockResolvedValue(thoughtMock)
-      const thoughtFindUniqueSpy = vi
-        .spyOn(prisma.thought, 'findUnique')
-        .mockResolvedValue(thoughtWithAuthorMock as any)
+      thoughtFindUniqueSpy.mockResolvedValue(thoughtWithAuthorMock as any)
 
       expect(await thoughtRouter.create(content, authorId)).toEqual(
         thoughtWithAuthorMock
@@ -98,18 +101,6 @@ describe('ThoughtRouter', () => {
 
   describe('edit', () => {
     test('should edit', async () => {
-      const id = 'id'
-      const content = 'content'
-      const authorId = 'authorId'
-
-      const thoughtWithAuthorMock = mock<z.infer<typeof thoughtSchema>>({
-        id,
-        content: content,
-        author: {
-          id: authorId,
-        },
-      })
-
       const thoughtUpdateSpy = vi
         .spyOn(prisma.thought, 'update')
         .mockResolvedValue(thoughtWithAuthorMock as any)
@@ -124,6 +115,44 @@ describe('ThoughtRouter', () => {
         },
         data: {
           content,
+        },
+        select: {
+          id: true,
+          content: true,
+          author: true,
+          createdAt: true,
+        },
+      })
+    })
+  })
+
+  describe('byId', () => {
+    test('should return found thought', async () => {
+      thoughtFindUniqueSpy.mockResolvedValue(thoughtMock)
+
+      expect(await thoughtRouter.byId(id)).toEqual(thoughtMock)
+
+      expect(thoughtFindUniqueSpy).toHaveBeenCalledWith({
+        where: {
+          id,
+        },
+        select: {
+          id: true,
+          content: true,
+          author: true,
+          createdAt: true,
+        },
+      })
+    })
+
+    test('should throw not found error', async () => {
+      thoughtFindUniqueSpy.mockResolvedValue(null)
+
+      await expect(thoughtRouter.byId(id)).rejects.toThrowError('NOT_FOUND')
+
+      expect(thoughtFindUniqueSpy).toHaveBeenCalledWith({
+        where: {
+          id,
         },
         select: {
           id: true,

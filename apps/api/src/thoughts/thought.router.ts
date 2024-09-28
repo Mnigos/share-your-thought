@@ -1,5 +1,7 @@
 import type { Thought } from '@prisma/client'
 import { Input, Query, Router } from 'nestjs-trpc'
+import { z } from 'zod'
+import { TRPCError } from '@trpc/server'
 
 import { PrismaService } from '../config/prisma'
 
@@ -64,5 +66,24 @@ export class ThoughtRouter {
         createdAt: true,
       },
     })
+  }
+
+  @Query({ input: z.string(), output: thoughtSchema })
+  async byId(@Input() id: string) {
+    const foundThought = await this.prisma.thought.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        content: true,
+        author: true,
+        createdAt: true,
+      },
+    })
+
+    if (!foundThought) throw new TRPCError({ code: 'NOT_FOUND' })
+
+    return foundThought
   }
 }
