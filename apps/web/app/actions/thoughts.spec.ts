@@ -5,13 +5,24 @@ import { trpc } from '../trpc'
 import type { Thought } from '../types/thoughts'
 import type { User } from '../types/users'
 
-import { createThought, getThoughts } from './thoughts'
+import {
+  createThought,
+  editThought,
+  getThoughtById,
+  getThoughts,
+} from './thoughts'
 import { getCurrentUser } from './users'
 
 vi.mock('../trpc', () => ({
   trpc: {
     thought: {
       create: {
+        query: vi.fn(),
+      },
+      edit: {
+        query: vi.fn(),
+      },
+      byId: {
         query: vi.fn(),
       },
     },
@@ -29,20 +40,30 @@ vi.mock('next/cache', () => ({
 }))
 
 describe('thoughts', () => {
+  const id = 'id'
   const authorId = 'authorId'
   const content = 'content'
   const authorMock = mock<User>({
     id: authorId,
   })
   const thoughtMock = mock<Thought>({
-    id: 'id',
+    id,
     content,
     author: authorMock,
   })
 
-  test('should create thought', async () => {
-    const content = 'content'
+  test('should get thoughts', async () => {
+    const thoughts = [thoughtMock]
 
+    const thoughtsAllQUery = vi
+      .spyOn(trpc.thoughts.all, 'query')
+      .mockResolvedValue(thoughts)
+
+    expect(await getThoughts()).toEqual(thoughts)
+    expect(thoughtsAllQUery).toHaveBeenCalled()
+  })
+
+  test('should create thought', async () => {
     const getCurrentUserSpy = vi
       .mocked(getCurrentUser)
       .mockResolvedValue(authorMock)
@@ -61,14 +82,28 @@ describe('thoughts', () => {
     expect(revalidateTagSpy).toHaveBeenCalledWith('thoughts')
   })
 
-  test('should get thoughts', async () => {
-    const thoughts = [thoughtMock]
+  test('should edit thought', async () => {
+    const thoughtsEditQuery = vi
+      .spyOn(trpc.thought.edit, 'query')
+      .mockResolvedValue(thoughtMock)
+    const revalidateTagSpy = vi.mocked(revalidateTag)
 
-    const thoughtsAllQUery = vi
-      .spyOn(trpc.thoughts.all, 'query')
-      .mockResolvedValue(thoughts)
+    expect(await editThought(content, id)).toEqual(thoughtMock)
 
-    expect(await getThoughts()).toEqual(thoughts)
-    expect(thoughtsAllQUery).toHaveBeenCalled()
+    expect(thoughtsEditQuery).toHaveBeenCalledWith({
+      content,
+      id,
+    })
+    expect(revalidateTagSpy).toHaveBeenCalledWith('thoughts')
+  })
+
+  test('should get thought by id', async () => {
+    const thoughtsByIdQuery = vi
+      .spyOn(trpc.thought.byId, 'query')
+      .mockResolvedValue(thoughtMock)
+
+    expect(await getThoughtById(id)).toEqual(thoughtMock)
+
+    expect(thoughtsByIdQuery).toHaveBeenCalledWith(id)
   })
 })

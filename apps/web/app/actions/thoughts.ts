@@ -23,3 +23,18 @@ export async function createThought(content: string) {
 
   return newThought
 }
+
+export async function editThought(content: string, id: string) {
+  const newThought = await trpc.thought.edit.query({
+    content,
+    id,
+  })
+
+  revalidateTag('thoughts')
+
+  return newThought
+}
+
+export async function getThoughtById(id: string) {
+  return unstable_cache(() => trpc.thought.byId.query(id), [id])()
+}
