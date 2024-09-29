@@ -41,6 +41,7 @@ module.exports = {
     'dist/',
     '.eslintrc.cjs',
     'server.ts',
+    'vitest.config.ts',
   ],
   plugins: [
     '@typescript-eslint',

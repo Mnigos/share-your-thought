@@ -18,6 +18,7 @@ export default defineConfig({
         '**/tests/**',
         '**/index.ts',
         '**/main.ts',
+        '**/config/**',
         '**/*.config.ts',
         '**/*.config.js',
         '**/*.d.ts',
