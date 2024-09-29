@@ -1,5 +1,5 @@
 import type { Thought } from '@prisma/client'
-import { Input, Query, Router } from 'nestjs-trpc'
+import { Input, Mutation, Query, Router } from 'nestjs-trpc'
 import { z } from 'zod'
 import { TRPCError } from '@trpc/server'
 
@@ -15,7 +15,7 @@ import {
 export class ThoughtRouter {
   constructor(private readonly prisma: PrismaService) {}
 
-  @Query({ input: createThoughtSchema, output: thoughtSchema })
+  @Mutation({ input: createThoughtSchema, output: thoughtSchema })
   async create(
     @Input('content') content: Thought['content'],
     @Input('authorId') authorId: Thought['authorId']
@@ -44,7 +44,7 @@ export class ThoughtRouter {
     })
   }
 
-  @Query({
+  @Mutation({
     input: editThoughtSchema,
     output: thoughtSchema,
   })

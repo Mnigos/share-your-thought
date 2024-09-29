@@ -14,7 +14,7 @@ export const getThoughts = unstable_cache(() => trpc.thoughts.all.query(), [], {
 export async function createThought(content: string) {
   const { id: authorId } = await getCurrentUser()
 
-  const newThought = await trpc.thought.create.query({
+  const newThought = await trpc.thought.create.mutate({
     content,
     authorId,
   })
@@ -25,7 +25,7 @@ export async function createThought(content: string) {
 }
 
 export async function editThought(content: string, id: string) {
-  const newThought = await trpc.thought.edit.query({
+  const newThought = await trpc.thought.edit.mutate({
     content,
     id,
   })
