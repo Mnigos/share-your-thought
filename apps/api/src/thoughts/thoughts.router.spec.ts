@@ -64,6 +64,9 @@ describe('ThoughtsRouter', () => {
           author: true,
           createdAt: true,
         },
+        orderBy: {
+          createdAt: 'desc',
+        },
       })
     })
   })

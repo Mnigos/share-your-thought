@@ -18,6 +18,9 @@ export class ThoughtsRouter {
         author: true,
         createdAt: true,
       },
+      orderBy: {
+        createdAt: 'desc',
+      },
     })
   }
 }

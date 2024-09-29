@@ -19,7 +19,7 @@ export default async function ThoughtsPage() {
           </header>
 
           <div className="flex flex-col gap-2">
-            {thoughts.toReversed().map(({ id, content, author }) => (
+            {thoughts.map(({ id, content, author }) => (
               <ThoughtCard
                 key={id}
                 id={id}
