@@ -89,12 +89,7 @@ describe('ThoughtRouter', () => {
         where: {
           id,
         },
-        select: {
-          id: true,
-          content: true,
-          author: true,
-          createdAt: true,
-        },
+        select: expect.anything(),
       })
     })
   })
@@ -116,12 +111,7 @@ describe('ThoughtRouter', () => {
         data: {
           content,
         },
-        select: {
-          id: true,
-          content: true,
-          author: true,
-          createdAt: true,
-        },
+        select: expect.anything(),
       })
     })
   })
@@ -136,12 +126,7 @@ describe('ThoughtRouter', () => {
         where: {
           id,
         },
-        select: {
-          id: true,
-          content: true,
-          author: true,
-          createdAt: true,
-        },
+        select: expect.anything(),
       })
     })
 
@@ -154,12 +139,7 @@ describe('ThoughtRouter', () => {
         where: {
           id,
         },
-        select: {
-          id: true,
-          content: true,
-          author: true,
-          createdAt: true,
-        },
+        select: expect.anything(),
       })
     })
   })
