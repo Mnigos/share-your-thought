@@ -36,5 +36,7 @@ export async function editThought(content: string, id: string) {
 }
 
 export async function getThoughtById(id: string) {
-  return unstable_cache(() => trpc.thought.byId.query(id), [id])()
+  return unstable_cache(() => trpc.thought.byId.query(id), [id], {
+    tags: ['thoughts'],
+  })()
 }
