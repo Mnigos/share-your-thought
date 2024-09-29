@@ -8,9 +8,9 @@ import {
 import { LogOut, User } from 'lucide-react'
 import type { ReactNode } from 'react'
 
-import { logout } from '../actions/auth'
-import { getCurrentUser } from '../actions/users'
+import { getCurrentUser } from '../../server/actions/users'
 import type { LayoutProps } from '../types/props'
+import { logout } from '../../server/actions/auth'
 
 export const runtime = 'edge'
 

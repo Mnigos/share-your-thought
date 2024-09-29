@@ -1,6 +1,6 @@
-import { getThoughts } from '../actions/thoughts'
-import { getCurrentUser } from '../actions/users'
-import { ThoughtForm, ThoughtCard } from '../components/thoughts'
+import { getThoughts } from '../../server/actions/thoughts'
+import { getCurrentUser } from '../../server/actions/users'
+import { ThoughtForm, ThoughtCard } from '../../components/thoughts'
 
 export default async function ThoughtsPage() {
   const currentUser = await getCurrentUser()

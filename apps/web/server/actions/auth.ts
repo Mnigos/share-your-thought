@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { trpc } from '../trpc'
+import { trpc } from '../../lib/trpc'
 
 export async function login(name: string) {
   const user = await trpc.user.login.query({

@@ -14,8 +14,8 @@ import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { createThought, editThought } from '../../actions/thoughts'
-import type { Thought } from '../../types/thoughts'
+import { createThought, editThought } from '../../server/actions/thoughts'
+import type { Thought } from '../../server/types/thoughts'
 import { SubmitButton } from '../submit-button'
 
 const thoughtSchema = z.object({

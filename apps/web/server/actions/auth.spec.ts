@@ -1,13 +1,13 @@
 import { mock } from 'vitest-mock-extended'
 import { cookies } from 'next/headers'
 
-import { trpc } from '../trpc'
+import { trpc } from '../../lib/trpc'
 import type { User } from '../types/users'
 
 import { login, logout } from './auth'
 
 vi.mock('next/headers')
-vi.mock('../trpc', () => ({
+vi.mock('../../lib/trpc', () => ({
   trpc: {
     user: {
       login: {

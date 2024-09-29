@@ -2,7 +2,7 @@
 
 import { revalidateTag, unstable_cache } from 'next/cache'
 
-import { trpc } from '../trpc'
+import { trpc } from '../../lib/trpc'
 
 import { getCurrentUser } from './users'
 

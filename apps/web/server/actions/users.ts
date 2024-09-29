@@ -4,7 +4,7 @@ import { unstable_cache } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 
-import { trpc } from '../trpc'
+import { trpc } from '../../lib/trpc'
 
 export async function getCurrentUser() {
   const username = cookies().get('username')?.value

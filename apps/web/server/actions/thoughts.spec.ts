@@ -1,7 +1,7 @@
 import { revalidateTag } from 'next/cache'
 import { mock } from 'vitest-mock-extended'
 
-import { trpc } from '../trpc'
+import { trpc } from '../../lib/trpc'
 import type { Thought } from '../types/thoughts'
 import type { User } from '../types/users'
 
@@ -13,7 +13,7 @@ import {
 } from './thoughts'
 import { getCurrentUser } from './users'
 
-vi.mock('../trpc', () => ({
+vi.mock('../../lib/trpc', () => ({
   trpc: {
     thought: {
       create: {
