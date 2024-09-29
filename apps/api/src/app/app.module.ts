@@ -7,8 +7,6 @@ import { PrismaModule } from '../config/prisma'
 import { UsersModule } from '../users'
 import { ThoughtsModule } from '../thoughts'
 
-import { AppRouter } from './app.router'
-
 @Module({
   imports: [
     TRPCModule.forRoot({
@@ -23,6 +21,5 @@ import { AppRouter } from './app.router'
     UsersModule,
     ThoughtsModule,
   ],
-  providers: [AppRouter],
 })
 export class AppModule {}
