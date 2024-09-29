@@ -1,9 +1,8 @@
 import { Query, Router } from 'nestjs-trpc'
 import { z } from 'zod'
 
-import { PrismaService } from '../config/prisma'
-
-import { thoughtSchema } from './thought.schema'
+import { PrismaService } from '../../config/prisma'
+import { thoughtSchema } from '../thought.schema'
 
 @Router({ alias: 'thoughts' })
 export class ThoughtsRouter {

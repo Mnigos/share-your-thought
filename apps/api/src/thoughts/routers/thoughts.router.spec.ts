@@ -3,9 +3,9 @@ import { Test } from '@nestjs/testing'
 import { mock } from 'vitest-mock-extended'
 import type { z } from 'zod'
 
-import { PrismaService } from '../config/prisma'
+import { PrismaService } from '../../config/prisma'
+import type { thoughtSchema } from '../thought.schema'
 
-import type { thoughtSchema } from './thought.schema'
 import { ThoughtsRouter } from './thoughts.router'
 
 describe('ThoughtsRouter', () => {

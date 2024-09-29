@@ -3,13 +3,12 @@ import { Input, Mutation, Query, Router } from 'nestjs-trpc'
 import { z } from 'zod'
 import { TRPCError } from '@trpc/server'
 
-import { PrismaService } from '../config/prisma'
-
+import { PrismaService } from '../../config/prisma'
 import {
   createThoughtSchema,
   editThoughtSchema,
   thoughtSchema,
-} from './thought.schema'
+} from '../thought.schema'
 
 @Router({ alias: 'thought' })
 export class ThoughtRouter {
