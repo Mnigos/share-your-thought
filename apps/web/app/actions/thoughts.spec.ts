@@ -17,10 +17,10 @@ vi.mock('../trpc', () => ({
   trpc: {
     thought: {
       create: {
-        query: vi.fn(),
+        mutate: vi.fn(),
       },
       edit: {
-        query: vi.fn(),
+        mutate: vi.fn(),
       },
       byId: {
         query: vi.fn(),
@@ -68,7 +68,7 @@ describe('thoughts', () => {
       .mocked(getCurrentUser)
       .mockResolvedValue(authorMock)
     const thoughtsCreateQuery = vi
-      .spyOn(trpc.thought.create, 'query')
+      .spyOn(trpc.thought.create, 'mutate')
       .mockResolvedValue(thoughtMock)
     const revalidateTagSpy = vi.mocked(revalidateTag)
 
@@ -84,7 +84,7 @@ describe('thoughts', () => {
 
   test('should edit thought', async () => {
     const thoughtsEditQuery = vi
-      .spyOn(trpc.thought.edit, 'query')
+      .spyOn(trpc.thought.edit, 'mutate')
       .mockResolvedValue(thoughtMock)
     const revalidateTagSpy = vi.mocked(revalidateTag)
 
