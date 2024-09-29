@@ -1,6 +1,6 @@
-import { EditThoughtDialog } from '../../../../../../components/thoughts'
-import { getThoughtById } from '../../../../../../server/actions/thoughts'
-import type { EditThoughtPageProps } from '../../../../../types/props'
+import { EditThoughtDialog } from '~/components/thoughts'
+import { getThoughtById } from '~/server/actions/thoughts'
+import type { EditThoughtPageProps } from '~/app/types/props'
 
 export default async function EditThoughtPage({
   params,

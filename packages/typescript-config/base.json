@@ -25,6 +25,6 @@
     "declaration": true,
     "declarationMap": true,
     "incremental": false,
-    "removeComments": true,
+    "removeComments": true
   }
 }

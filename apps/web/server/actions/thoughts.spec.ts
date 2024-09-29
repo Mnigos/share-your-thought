@@ -13,7 +13,7 @@ import {
 } from './thoughts'
 import { getCurrentUser } from './users'
 
-vi.mock('../../lib/trpc', () => ({
+vi.mock('~/lib/trpc', () => ({
   trpc: {
     thought: {
       create: {

@@ -2,12 +2,13 @@ import { mock } from 'vitest-mock-extended'
 import { cookies } from 'next/headers'
 import type { MockInstance } from 'vitest'
 
-import { trpc } from '../../lib/trpc'
 import type { User } from '../types/users'
 
 import { getCurrentUser } from './users'
 
-vi.mock('../../lib/trpc', () => ({
+import { trpc } from '~/lib/trpc'
+
+vi.mock('~/lib/trpc', () => ({
   trpc: {
     user: {
       byName: {

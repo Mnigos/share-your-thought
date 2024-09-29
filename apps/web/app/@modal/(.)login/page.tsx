@@ -21,8 +21,8 @@ import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { login } from '../../actions/auth'
-import { SubmitButton } from '../../components/submit-button'
+import { login } from '~/server/actions/auth'
+import { SubmitButton } from '~/components/submit-button'
 
 const loginSchema = z.object({
   name: z

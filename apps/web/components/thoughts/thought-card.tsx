@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@repo/ui/components/card'
 import { Pencil, User } from 'lucide-react'
 import Link from 'next/link'
 
-import type { Thought } from '../../server/types/thoughts'
+import type { Thought } from '~/server/types/thoughts'
 
 namespace ThoughtCard {
   export type Props = Readonly<
