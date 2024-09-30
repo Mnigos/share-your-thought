@@ -27,10 +27,13 @@ async function ThoughtsLayout({ children, modal }: ThoughtsLayout.Props) {
   const user = await getCurrentUser()
 
   return (
-    <div>
-      <nav className="flex w-full justify-end bg-black px-4 py-2">
+    <div className="flex flex-col gap-4">
+      <nav className="flex w-full justify-end bg-black">
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex items-center gap-2" asChild>
+          <DropdownMenuTrigger
+            className="hover:bg-foreground hover:text-background data-[state=open]:text-background data-[state=open]:bg-foreground flex items-center gap-2 border-0"
+            asChild
+          >
             <Button variant="outline">
               <p className="text-lg">{user.name}</p>
               <User />
@@ -40,7 +43,12 @@ async function ThoughtsLayout({ children, modal }: ThoughtsLayout.Props) {
           <DropdownMenuContent>
             <form action={logout}>
               <DropdownMenuItem className="flex items-center gap-2" asChild>
-                <Button variant="destructive" className="w-full" type="submit">
+                <Button
+                  variant="destructive"
+                  className="w-full"
+                  type="submit"
+                  size="sm"
+                >
                   <LogOut />
                   Logout
                 </Button>
