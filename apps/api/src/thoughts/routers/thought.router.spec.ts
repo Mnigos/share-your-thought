@@ -5,10 +5,11 @@ import type { Thought } from '@prisma/client'
 import type { z } from 'zod'
 import type { MockInstance } from 'vitest'
 
-import { PrismaService } from '../../config/prisma'
 import type { thoughtSchema } from '../thought.schema'
 
 import { ThoughtRouter } from './thought.router'
+
+import { PrismaService } from '~/config/prisma'
 
 describe('ThoughtRouter', () => {
   const id = 'id'

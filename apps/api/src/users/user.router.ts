@@ -2,9 +2,9 @@ import { TRPCError } from '@trpc/server'
 import { Input, Query, Router } from 'nestjs-trpc'
 import { z } from 'zod'
 
-import { PrismaService } from '../config/prisma'
-
 import { createUserSchema, userSchema } from './user.schema'
+
+import { PrismaService } from '~/config/prisma'
 
 @Router({ alias: 'user' })
 export class UsersRouter {

@@ -10,7 +10,6 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "incremental": true,
-    "baseUrl": ".",
-    "outDir": "./dist",
+    "outDir": "./dist"
   }
 }

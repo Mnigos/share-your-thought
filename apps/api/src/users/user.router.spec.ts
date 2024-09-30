@@ -3,9 +3,9 @@ import type { User } from '@prisma/client'
 import { mock } from 'vitest-mock-extended'
 import type { MockInstance } from 'vitest'
 
-import { PrismaService } from '../config/prisma'
-
 import { UsersRouter } from './user.router'
+
+import { PrismaService } from '~/config/prisma'
 
 describe('UserRouter', () => {
   const name = 'test'
