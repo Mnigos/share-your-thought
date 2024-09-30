@@ -82,7 +82,10 @@ export default function LoginPage() {
                       <Input {...field} placeholder="your nickname" />
                     </FormControl>
 
-                    <SubmitButton pending={pending} />
+                    <SubmitButton
+                      pending={pending}
+                      texts={['Connect', 'Connecting...']}
+                    />
                   </div>
 
                   <FormMessage />

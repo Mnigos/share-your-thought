@@ -57,6 +57,10 @@ function ThoughtForm({ thought }: ThoughtForm.Props) {
     if (thought) router.push('/thoughts')
   }
 
+  const submitButtonTexts: Required<SubmitButton.Props['texts']> = thought
+    ? ['Edit', 'Editing...']
+    : ['Post', 'Posting...']
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -74,7 +78,7 @@ function ThoughtForm({ thought }: ThoughtForm.Props) {
                   <FormMessage />
                 </div>
 
-                <SubmitButton pending={pending} />
+                <SubmitButton pending={pending} texts={submitButtonTexts} />
               </div>
             </FormItem>
           )}
