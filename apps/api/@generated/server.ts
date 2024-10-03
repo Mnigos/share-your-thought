@@ -6,7 +6,7 @@ const publicProcedure = t.procedure;
 
 const appRouter = t.router({
   user: t.router({
-    login: publicProcedure.input(z.object({
+    connect: publicProcedure.input(z.object({
       id: z.string(),
       name: z.string(),
       createdAt: z.date(),

@@ -31,7 +31,7 @@ let UsersRouter = class UsersRouter {
     constructor(prisma){
         this.prisma = prisma;
     }
-    async login(name) {
+    async connect(name) {
         const foundUser = await this.prisma.user.findUnique({
             where: {
                 name
@@ -67,7 +67,7 @@ _ts_decorate([
         String
     ]),
     _ts_metadata("design:returntype", Promise)
-], UsersRouter.prototype, "login", null);
+], UsersRouter.prototype, "connect", null);
 _ts_decorate([
     (0, _nestjstrpc.Query)({
         input: _zod.z.string(),

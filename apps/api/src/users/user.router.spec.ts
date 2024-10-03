@@ -49,7 +49,7 @@ describe('UserRouter', () => {
     expect(usersRouter).toBeDefined()
   })
 
-  describe('login', () => {
+  describe('connect', () => {
     let userCreateSpy: MockInstance
 
     beforeEach(() => {
@@ -59,7 +59,7 @@ describe('UserRouter', () => {
     test('should return found user', async () => {
       userFindUniqueSpy.mockResolvedValue(userMock)
 
-      expect(await usersRouter.login(name)).toEqual(userMock)
+      expect(await usersRouter.connect(name)).toEqual(userMock)
 
       expect(userFindUniqueSpy).toHaveBeenCalledWith({
         where: {
@@ -73,7 +73,7 @@ describe('UserRouter', () => {
       userFindUniqueSpy.mockResolvedValue(null)
       userCreateSpy.mockResolvedValue(userMock)
 
-      expect(await usersRouter.login(name)).toEqual(userMock)
+      expect(await usersRouter.connect(name)).toEqual(userMock)
 
       expect(userFindUniqueSpy).toHaveBeenCalledWith({
         where: {

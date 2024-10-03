@@ -11,7 +11,7 @@ export class UsersRouter {
   constructor(private readonly prisma: PrismaService) {}
 
   @Query({ input: createUserSchema, output: userSchema })
-  async login(@Input('name') name: string) {
+  async connect(@Input('name') name: string) {
     const foundUser = await this.prisma.user.findUnique({
       where: {
         name,
