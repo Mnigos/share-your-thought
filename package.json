@@ -5,7 +5,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "start": "turbo start",
-    "lint": "turbo lint",
+    "lint": "turbo lint --",
     "test": "turbo test",
     "ui": "pnpm --filter @repo/ui ui",
     "test:coverage": "turbo test:coverage",
@@ -14,6 +14,7 @@
     "prisma:format": "pnpm --filter api prisma:format",
     "prisma:migrate:dev": "pnpm --filter api prisma:migrate:dev",
     "prisma:migrate:deploy": "pnpm --filter api prisma:migrate:deploy",
+    "vercel-build": "turbo build --filter=api",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky",
     "commit": "cz"

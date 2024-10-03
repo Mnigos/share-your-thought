@@ -20,6 +20,8 @@
     "prisma:format": "prisma format",
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",
+    "postinstall": "prisma generate",
+    "vercel-build": "nest build",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
