@@ -7,11 +7,11 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
-    "web#build": {
-      "dependsOn": ["^api#build"]
-    },
     "lint": {
       "dependsOn": ["^lint"]
+    },
+    "start": {
+      "persistent": true
     },
     "test": {},
     "typecheck": {
