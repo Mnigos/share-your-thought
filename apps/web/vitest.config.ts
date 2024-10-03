@@ -1,10 +1,11 @@
 /// <reference types="vitest" />
 
 import React from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
-  plugins: [React()],
+  plugins: [React(), tsconfigPaths()],
   test: {
     resolveSnapshotPath: (testPath, snapshotExtension) =>
       `./tests/snapshots/${testPath.split('/').at(-1)}${snapshotExtension}`,
