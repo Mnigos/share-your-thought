@@ -11,7 +11,7 @@ import type { ReactNode } from 'react'
 import type { LayoutProps } from '../types/props'
 
 import { getCurrentUser } from '~/server/actions/users'
-import { logout } from '~/server/actions/auth'
+import { disconnect } from '~/server/actions/auth'
 
 export const runtime = 'edge'
 
@@ -41,7 +41,7 @@ async function ThoughtsLayout({ children, modal }: ThoughtsLayout.Props) {
           </DropdownMenuTrigger>
 
           <DropdownMenuContent>
-            <form action={logout}>
+            <form action={disconnect}>
               <DropdownMenuItem className="flex items-center gap-2" asChild>
                 <Button
                   variant="destructive"

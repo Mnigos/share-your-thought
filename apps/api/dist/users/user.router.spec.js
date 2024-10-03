@@ -40,14 +40,14 @@ describe('UserRouter', ()=>{
     test('should be defined', ()=>{
         expect(usersRouter).toBeDefined();
     });
-    describe('login', ()=>{
+    describe('connect', ()=>{
         let userCreateSpy;
         beforeEach(()=>{
             userCreateSpy = vi.spyOn(prisma.user, 'create');
         });
         test('should return found user', async ()=>{
             userFindUniqueSpy.mockResolvedValue(userMock);
-            expect(await usersRouter.login(name)).toEqual(userMock);
+            expect(await usersRouter.connect(name)).toEqual(userMock);
             expect(userFindUniqueSpy).toHaveBeenCalledWith({
                 where: {
                     name
@@ -58,7 +58,7 @@ describe('UserRouter', ()=>{
         test('should create account if not found', async ()=>{
             userFindUniqueSpy.mockResolvedValue(null);
             userCreateSpy.mockResolvedValue(userMock);
-            expect(await usersRouter.login(name)).toEqual(userMock);
+            expect(await usersRouter.connect(name)).toEqual(userMock);
             expect(userFindUniqueSpy).toHaveBeenCalledWith({
                 where: {
                     name

@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main>
       <Button asChild>
-        <Link href="/login" passHref>
+        <Link href="/connect" passHref>
           Get started
         </Link>
       </Button>

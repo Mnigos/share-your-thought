@@ -5,8 +5,8 @@ import { redirect } from 'next/navigation'
 
 import { trpc } from '~/lib/trpc'
 
-export async function login(name: string) {
-  const user = await trpc.user.login.query({
+export async function connect(name: string) {
+  const user = await trpc.user.connect.query({
     name,
   })
 
@@ -15,7 +15,7 @@ export async function login(name: string) {
   return user
 }
 
-export async function logout() {
+export async function disconnect() {
   cookies().delete('username')
 
   redirect('/')
