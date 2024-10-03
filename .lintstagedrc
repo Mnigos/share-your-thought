@@ -1,3 +1,4 @@
 {
-  "*.{js,jsx,ts,tsx}": "pnpm run lint --"
+  "*.{js,jsx,ts,tsx}": "eslint --fix --cache",
+  "*.json": "prettier --write"
 }
