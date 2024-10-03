@@ -10,7 +10,7 @@ import { ThoughtsModule } from '~/thoughts'
 @Module({
   imports: [
     TRPCModule.forRoot({
-      autoSchemaFile: '.',
+      autoSchemaFile: './@generated',
     }),
     ConfigModule.forRoot({
       validate: env => envSchema.parse(env),
