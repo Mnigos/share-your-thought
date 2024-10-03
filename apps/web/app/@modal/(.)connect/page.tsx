@@ -17,7 +17,7 @@ export default function LoginPage() {
   return (
     <Dialog
       defaultOpen={true}
-      open={pathname === '/login'}
+      open={pathname === '/connect'}
       onOpenChange={isOpen => {
         if (!isOpen) router.push('/')
       }}
