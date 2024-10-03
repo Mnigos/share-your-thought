@@ -31,7 +31,8 @@ let ThoughtsRouter = class ThoughtsRouter {
                 id: true,
                 content: true,
                 author: true,
-                createdAt: true
+                createdAt: true,
+                updatedAt: true
             },
             orderBy: {
                 createdAt: 'desc'

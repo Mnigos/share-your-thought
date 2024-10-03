@@ -40,6 +40,7 @@ export class ThoughtRouter {
         content: true,
         author: true,
         createdAt: true,
+        updatedAt: true,
       },
     })
   }
@@ -64,6 +65,7 @@ export class ThoughtRouter {
         content: true,
         author: true,
         createdAt: true,
+        updatedAt: true,
       },
     })
   }
@@ -79,6 +81,7 @@ export class ThoughtRouter {
         content: true,
         author: true,
         createdAt: true,
+        updatedAt: true,
       },
     })
 

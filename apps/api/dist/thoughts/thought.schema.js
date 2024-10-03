@@ -25,7 +25,8 @@ const thoughtSchema = _zod.z.object({
     id: _zod.z.string(),
     content: _zod.z.string(),
     author: _userschema.userSchema,
-    createdAt: _zod.z.date()
+    createdAt: _zod.z.date(),
+    updatedAt: _zod.z.date()
 });
 const createThoughtSchema = thoughtSchema.pick({
     content: true

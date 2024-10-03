@@ -50,7 +50,8 @@ let ThoughtRouter = class ThoughtRouter {
                 id: true,
                 content: true,
                 author: true,
-                createdAt: true
+                createdAt: true,
+                updatedAt: true
             }
         });
     }
@@ -66,7 +67,8 @@ let ThoughtRouter = class ThoughtRouter {
                 id: true,
                 content: true,
                 author: true,
-                createdAt: true
+                createdAt: true,
+                updatedAt: true
             }
         });
     }
@@ -79,7 +81,8 @@ let ThoughtRouter = class ThoughtRouter {
                 id: true,
                 content: true,
                 author: true,
-                createdAt: true
+                createdAt: true,
+                updatedAt: true
             }
         });
         if (!foundThought) throw new _server.TRPCError({

@@ -17,6 +17,7 @@ export class ThoughtsRouter {
         content: true,
         author: true,
         createdAt: true,
+        updatedAt: true,
       },
       orderBy: {
         createdAt: 'desc',

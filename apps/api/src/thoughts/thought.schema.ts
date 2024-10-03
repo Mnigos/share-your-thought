@@ -7,6 +7,7 @@ export const thoughtSchema = z.object({
   content: z.string(),
   author: userSchema,
   createdAt: z.date(),
+  updatedAt: z.date(),
 })
 
 export const createThoughtSchema = thoughtSchema

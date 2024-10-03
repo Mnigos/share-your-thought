@@ -31,6 +31,7 @@ const appRouter = t.router({
         createdAt: z.date(),
       }),
       createdAt: z.date(),
+      updatedAt: z.date(),
     }))).query(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
   }),
   thought: t.router({
@@ -43,6 +44,7 @@ const appRouter = t.router({
         createdAt: z.date(),
       }),
       createdAt: z.date(),
+      updatedAt: z.date(),
     }).pick({
       content: true,
     }).extend({
@@ -56,6 +58,7 @@ const appRouter = t.router({
         createdAt: z.date(),
       }),
       createdAt: z.date(),
+      updatedAt: z.date(),
     })).mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
     edit: publicProcedure.input(z.object({
       id: z.string(),
@@ -66,6 +69,7 @@ const appRouter = t.router({
         createdAt: z.date(),
       }),
       createdAt: z.date(),
+      updatedAt: z.date(),
     }).pick({
       content: true,
       id: true,
@@ -78,6 +82,7 @@ const appRouter = t.router({
         createdAt: z.date(),
       }),
       createdAt: z.date(),
+      updatedAt: z.date(),
     })).mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
     byId: publicProcedure.input(z.string()).output(z.object({
       id: z.string(),
@@ -88,6 +93,7 @@ const appRouter = t.router({
         createdAt: z.date(),
       }),
       createdAt: z.date(),
+      updatedAt: z.date(),
     })).query(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
   })
 });
