@@ -10,6 +10,10 @@ jobs:
   build:
     name: 'Build 🧱'
     runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+      TURBO_REMOTE_ONLY: true
 
     steps:
       - name: Checkout 🛎
@@ -21,20 +25,19 @@ jobs:
       - name: Generate Prisma types 📝
         run: pnpm run prisma:generate
         env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-          TURBO_TEAM: ${{ vars.TURBO_TEAM }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Build Application 🧱
         run: pnpm run build
-        env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-          TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
   lint:
     name: 'Lint 🐱'
     needs: build
     runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+      TURBO_REMOTE_ONLY: true
 
     steps:
       - name: Checkout 🛎
@@ -45,14 +48,15 @@ jobs:
 
       - name: Lint JS files 🐱
         run: pnpm run lint
-        env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-          TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
   test:
     name: 'Test 🧪'
     needs: build
     runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+      TURBO_REMOTE_ONLY: true
 
     steps:
       - name: Checkout 🛎
@@ -61,8 +65,10 @@ jobs:
       - name: Setup 👨🏻‍💻
         uses: ./.github/actions/setup
 
+      - name: Generate Prisma types 📝
+        run: pnpm run prisma:generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
       - name: Run unit tests 🧪
         run: pnpm run test
-        env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-          TURBO_TEAM: ${{ vars.TURBO_TEAM }}
