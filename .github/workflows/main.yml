@@ -18,6 +18,13 @@ jobs:
       - name: Setup 👨🏻‍💻
         uses: ./.github/actions/setup
 
+      - name: Generate Prisma types 📝
+        run: pnpm run prisma:generate
+        env:
+          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+          TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
       - name: Build Application 🧱
         run: pnpm run build
         env:
