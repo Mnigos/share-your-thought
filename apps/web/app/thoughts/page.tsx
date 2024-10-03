@@ -15,13 +15,11 @@ export default async function ThoughtsPage() {
       </Card>
 
       <section className="flex flex-col gap-2">
-        {thoughts.map(({ id, content, author }) => (
+        {thoughts.map(thought => (
           <ThoughtCard
-            key={id}
-            id={id}
-            content={content}
-            author={author}
+            key={thought.id}
             currentUserId={currentUser.id}
+            {...thought}
           />
         ))}
       </section>

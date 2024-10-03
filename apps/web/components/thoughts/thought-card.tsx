@@ -7,7 +7,7 @@ import type { Thought } from '~/server/types/thoughts'
 
 namespace ThoughtCard {
   export type Props = Readonly<
-    Pick<Thought, 'content' | 'author' | 'id'> & {
+    Thought & {
       currentUserId: string
     }
   >
@@ -17,6 +17,8 @@ function ThoughtCard({
   id,
   content,
   author,
+  updatedAt,
+  createdAt,
   currentUserId,
 }: ThoughtCard.Props) {
   return (
@@ -39,14 +41,16 @@ function ThoughtCard({
         <User className="place-self-center" />
 
         <CardHeader className="flex flex-row items-center justify-between">
-          <div className="flex flex-row items-center gap-2">
-            <div>
-              <p className="font-semibold leading-5">{author.name}</p>
-              <p className="text-muted-foreground text-xs">
-                {new Date(author.createdAt).toLocaleDateString()}
-              </p>
-            </div>
+          <div>
+            <p className="font-semibold leading-5">{author.name}</p>
+            <p className="text-muted-foreground text-xs">
+              {new Date(author.createdAt).toLocaleDateString()}
+            </p>
           </div>
+
+          {createdAt !== updatedAt && (
+            <p className="pr-2 text-xs text-neutral-400">(edited)</p>
+          )}
         </CardHeader>
 
         <div />
