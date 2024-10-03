@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { userSchema } from '~/users'
+import { userSchema } from '../users/user.schema'
 
 export const thoughtSchema = z.object({
   id: z.string(),
