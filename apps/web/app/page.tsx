@@ -3,8 +3,6 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-export const runtime = 'edge'
-
 export default function Home() {
   const username = cookies().get('username')
 
